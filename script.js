@@ -46,6 +46,51 @@
     sections.forEach((section) => observer.observe(section));
   }
 
+  const routeItems = [...document.querySelectorAll(".availability-grid [data-fecha]")];
+  const chileDateFormatter = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Santiago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  const getChileDateKey = () => {
+    const dateParts = Object.fromEntries(
+      chileDateFormatter
+        .formatToParts(new Date())
+        .filter(({ type }) => type === "year" || type === "month" || type === "day")
+        .map(({ type, value }) => [type, value]),
+    );
+
+    return `${dateParts.year}-${dateParts.month}-${dateParts.day}`;
+  };
+
+  const updateRouteAvailability = () => {
+    const todayInChile = getChileDateKey();
+
+    routeItems.forEach((item) => {
+      const routeDate = item.dataset.fecha;
+      const statusBadge = item.querySelector("[data-route-status]");
+      if (!routeDate || !/^\d{4}-\d{2}-\d{2}$/.test(routeDate) || !statusBadge) return;
+
+      const isFinished = routeDate < todayInChile;
+      const statusLabel = isFinished ? "Finalizada" : "Disponible";
+
+      item.classList.toggle("route-finished", isFinished);
+      item.classList.toggle("route-available", !isFinished);
+      item.dataset.estado = isFinished ? "finalizada" : "disponible";
+      statusBadge.textContent = statusLabel;
+    });
+  };
+
+  if (routeItems.length > 0) {
+    updateRouteAvailability();
+    window.setInterval(updateRouteAvailability, 60_000);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) updateRouteAvailability();
+    });
+  }
+
   const refreshOpenFaqHeights = () => {
     document.querySelectorAll(".faq-item.is-open .faq-answer").forEach((answer) => {
       answer.style.maxHeight = `${answer.scrollHeight}px`;
