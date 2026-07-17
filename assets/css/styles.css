@@ -206,7 +206,7 @@ h3 {
   padding-top: var(--nav-height);
   background:
     linear-gradient(90deg, rgba(8, 36, 66, 0.92) 0%, rgba(8, 36, 66, 0.78) 45%, rgba(8, 36, 66, 0.35) 100%),
-    url("assets/img/bg-hero.png") center right / cover no-repeat;
+    url("../img/bg-hero.png") center right / cover no-repeat;
   background-color: var(--navy);
 }
 
@@ -309,7 +309,7 @@ h3 {
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(251, 252, 253, 0.84), rgba(251, 252, 253, 0.6)),
-    url("assets/img/servicios.png") center / cover no-repeat;
+    url("../img/servicios.png") center / cover no-repeat;
   background-color: var(--paper);
 }
 
@@ -482,7 +482,7 @@ h3 {
 }
 
 .coverage-media {
-  background-image: url("assets/img/bg-cobertura.png");
+  background-image: url("../img/bg-cobertura.png");
   filter: saturate(0.95) contrast(1.03);
 }
 
@@ -669,7 +669,7 @@ h3 {
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(251, 252, 253, 0.86), rgba(251, 252, 253, 0.62)),
-    url("assets/img/itinerario.png") center / cover no-repeat;
+    url("../img/itinerario.png") center / cover no-repeat;
   background-color: var(--paper);
 }
 
@@ -678,12 +678,12 @@ h3 {
   overflow: hidden;
   background:
     linear-gradient(rgba(8, 36, 66, 0.08), rgba(8, 36, 66, 0.08)),
-    url("assets/img/ubicacionbg.png") center / cover no-repeat;
+    url("../img/ubicacionbg.png") center / cover no-repeat;
   background-color: var(--paper);
 }
 
 .location-media {
-  background-image: url("assets/img/ubicacionbg.png");
+  background-image: url("../img/ubicacionbg.png");
   background-position: center;
   filter: saturate(0.92) contrast(1.05);
 }
@@ -700,7 +700,7 @@ h3 {
   border-block: 1px solid rgba(8, 36, 66, 0.12);
   background:
     linear-gradient(90deg, rgba(8, 36, 66, 0.92) 0%, rgba(8, 36, 66, 0.78) 52%, rgba(8, 36, 66, 0.5) 100%),
-    url("assets/img/nosotros.png") center right / cover no-repeat;
+    url("../img/nosotros.png") center right / cover no-repeat;
   background-color: var(--navy);
 }
 
@@ -998,7 +998,7 @@ h3 {
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(247, 248, 250, 0.76), rgba(247, 248, 250, 0.2)),
-    url("assets/img/preguntas.png") center / cover no-repeat;
+    url("../img/preguntas.png") center / cover no-repeat;
   background-color: var(--paper);
 }
 
@@ -1111,7 +1111,7 @@ h3 {
 
 .cta-mountain {
   inset: -12% -4% -18%;
-  background: url("assets/img/finalcta.png") center 50% / cover no-repeat;
+  background: url("../img/finalcta.png") center 50% / cover no-repeat;
   filter: saturate(0.9) contrast(1.06);
   transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.06);
   transform-origin: center;
@@ -1200,8 +1200,8 @@ h3 {
 }
 
 .footer-bottom {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
   padding-block: 1rem 1.35rem;
@@ -1228,11 +1228,7 @@ h3 {
   text-underline-offset: 0.18em;
 }
 
-.footer-bottom p:nth-child(2) {
-  text-align: center;
-}
-
-.footer-bottom p:nth-child(3) {
+.footer-bottom p:last-child {
   text-align: right;
 }
 
@@ -1558,13 +1554,13 @@ h3 {
   }
 
   .footer-bottom {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
   }
 
   .footer-bottom p,
-  .footer-bottom p:nth-child(2),
-  .footer-bottom p:nth-child(3) {
-    text-align: left;
+  .footer-bottom p:last-child {
+    text-align: center;
   }
 }
 
